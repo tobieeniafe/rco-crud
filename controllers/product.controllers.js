@@ -5,6 +5,7 @@ import {
 const ProductController = {
   add(req, res, next) {
     const product = req.locals;
+    product.createdBy = req.decoded.id;
     addProduct(product)
       .then(() => {
         res.status(201).json({ success: true, message: 'Product added' });
@@ -14,7 +15,7 @@ const ProductController = {
   update(req, res, next) {
     const updatedproduct = req.locals;
     updateProduct(updatedproduct)
-      .then((product) => {
+      .then(() => {
         res.status(200).json({ success: true, message: 'product updated', updatedproduct });
       })
       .catch((error) => next(error));
