@@ -7,6 +7,9 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    cartId: {
+      type: String
+    } 
   },
   { timestamps: true },
 );

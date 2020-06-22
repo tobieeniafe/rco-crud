@@ -2,7 +2,7 @@ import Product from '../models/product.model';
 import { ErrorHandler } from '../helpers/errorHandler';
 
 export const getProductByRefNo = async (refNo) => Product.findOne({ refNo });
-export const getUserById = async (id) => Product.findById(id);
+export const getProductById = async (id) => Product.findById(id);
 
 export const addProduct = async (product) => {
   const existingProduct = await getProductByRefNo(product.refNo).catch((error) => {

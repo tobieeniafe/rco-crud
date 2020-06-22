@@ -3,7 +3,7 @@ import { USER_SECRET } from '../config';
 import User from '../models/user.model';
 
 export const validateToken = () => (req, res, next) => {
-  const token = req.headers['access-token'];
+  const token = req.headers['accessToken'];
   if (token) {
     jwt.verify(token, USER_SECRET, (err, decoded) => {
       if (err) {
@@ -42,7 +42,7 @@ export const productValidation = (schema) => (req, res, next) => {
 
   if (value && !error) {
     req.locals = value;
-    const token = req.headers['access-token'];
+    const token = req.headers['accessToken'];
     if (token) {
       jwt.verify(token, USER_SECRET, (err, decoded) => {
         if (err) {

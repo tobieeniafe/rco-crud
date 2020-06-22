@@ -1,17 +1,17 @@
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
+import  apiEndpoint from '../apiEndpoint';
 import jwt_decode from "jwt-decode";
 import {
   GET_ERRORS,
   SET_CURRENT_USER,
   USER_LOADING
 } from "./types";
-const endpoint = 'http://localhost:1000/api/v1';
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post(`${endpoint}/user/register`, userData)
+    .post(`${apiEndpoint}/user/register`, userData)
     .then(res => history.push("/login"))
     .catch(err =>
       dispatch({
@@ -23,7 +23,7 @@ export const registerUser = (userData, history) => dispatch => {
 // Login - get user token
 export const loginUser = userData => dispatch => {
   axios
-    .post(`${endpoint}/user/login`, userData)
+    .post(`${apiEndpoint}/user/login`, userData)
     .then(res => {
       const { token } = res.data.user;
       localStorage.setItem("jwtToken", token);

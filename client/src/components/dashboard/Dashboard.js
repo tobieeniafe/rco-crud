@@ -1,17 +1,37 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import axios from 'axios';
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import apiEndpoint from '../../apiEndpoint';
+
+const token = localStorage.getItem('jwtToken');
+
 class Dashboard extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
   };
-render() {
+  
+  state = {
+    products: [],
+  };
+  componentDidMount() {
+
+    axios.get(`${apiEndpoint}/product/all`, { headers: { accessToken: token } })
+      .then(response => {
+          console.log(response.data);
+      })
+      .catch((error) => {
+          console.log('error ' + error);
+      });
+  }
+
+  render() {
     // const { user } = this.props.auth;
     // console.log(user);
     
-return (
+    return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">
           <div className="col s12 center-align">
