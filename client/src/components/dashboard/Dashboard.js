@@ -18,7 +18,7 @@ class Dashboard extends Component {
   };
   componentDidMount() {
 
-    axios.get(`${apiEndpoint}/product/all`, { headers: { accessToken: token } })
+    axios.get(`${apiEndpoint}/product/all`, { headers: { "access_token": token } })
       .then(response => {
           console.log(response.data);
       })
