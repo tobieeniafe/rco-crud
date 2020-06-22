@@ -34,8 +34,8 @@ class Dashboard extends Component {
     // console.log(user);
     
     return (
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
-        <div className="row">
+      <div style={{ height: "75vh" }} className="container">
+        <div className="row col s12">
           <button
                 style={{
                   width: "150px",
@@ -51,11 +51,21 @@ class Dashboard extends Component {
         </div>
         <div className="row">
             { this.state.products.map((product, i) => 
-              <div className="col s4 center-align"  key={i}>
-                {product.name}
-                <img src={product.image}/>
-                {product.price}
-              </div>)}
+              <div className="col s3" key={i}>
+              <div className="card">
+                <div className="card-image">
+                  <img src={product.image} alt="" />
+                  <span className="card-title">{product.name}</span>
+                </div>
+                <div className="card-content">
+                  <p>Price: {product.price}</p>
+                </div>
+                <div className="card-action">
+                  <a href="#">Buy item</a>
+                </div>
+              </div>
+              </div>
+            )}
         </div>
       </div>
     );
