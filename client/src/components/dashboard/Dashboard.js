@@ -21,6 +21,8 @@ class Dashboard extends Component {
     axios.get(`${apiEndpoint}/product/all`, { headers: { "access_token": token } })
       .then(response => {
           console.log(response.data);
+          const products = response.data.products;
+          this.setState({ products });
       })
       .catch((error) => {
           console.log('error ' + error);
@@ -33,9 +35,7 @@ class Dashboard extends Component {
     
     return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
-        <div className="row">
-          <div className="col s12 center-align">
-            <button
+        <button
               style={{
                 width: "150px",
                 borderRadius: "3px",
@@ -46,8 +46,9 @@ class Dashboard extends Component {
               className="btn btn-large waves-effect waves-light hoverable blue accent-3"
             >
               Logout
-            </button>
-          </div>
+        </button>
+        <div className="row">
+            { this.state.products.map(product => <div className="col s4 center-align">{product.name}</div>)}
         </div>
       </div>
     );
