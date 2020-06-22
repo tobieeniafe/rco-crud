@@ -7,7 +7,6 @@ export const registerSchema = Joi.object({
     .messages({
       'any.only': 'Password does not match',
     }),
-  phone: Joi.string().allow(null, '').optional().default(''),
 });
 
 export const loginSchema = Joi.object({
