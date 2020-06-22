@@ -12,7 +12,7 @@ const endpoint = 'http://localhost:1000/api/v1';
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post(`${endpoint}/user/register`, userData)
-    .then(res => history.push("/login")) // re-direct to login on successful register
+    .then(res => history.push("/login"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -27,11 +27,8 @@ export const loginUser = userData => dispatch => {
     .then(res => {
       const { token } = res.data.user;
       localStorage.setItem("jwtToken", token);
-      // Set token to Auth header
       setAuthToken(token);
-      // Decode token to get user data
       const decoded = jwt_decode(token);
-      // Set current user
       dispatch(setCurrentUser(decoded));
     })
     .catch(err =>
@@ -56,10 +53,7 @@ export const setUserLoading = () => {
 };
 // Log user out
 export const logoutUser = () => dispatch => {
-  // Remove token from local storage
   localStorage.removeItem("jwtToken");
-  // Remove auth header for future requests
   setAuthToken(false);
-  // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
 };

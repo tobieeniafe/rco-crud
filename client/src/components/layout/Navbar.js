@@ -41,7 +41,8 @@ class Navbar extends Component {
                 >
                   Log In
                 </Link>
-              </li> 
+              </li>
+              <li></li>
             </ul>
           </div>
         </nav>

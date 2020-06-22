@@ -11,12 +11,11 @@ class Register extends Component {
       name: "",
       email: "",
       password: "",
-      password2: "",
+      confirmPassword: "",
       errors: {}
     };
   }
   componentDidMount() {
-    // If logged in and user navigates to Register page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
@@ -37,7 +36,7 @@ onSubmit = e => {
   const newUser = {
     email: this.state.email,
     password: this.state.password,
-    confirmPassword: this.state.password2
+    confirmPassword: this.state.confirmPassword
   };
     
   this.props.registerUser(newUser, this.props.history); 
@@ -93,16 +92,16 @@ render() {
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
-                  value={this.state.password2}
-                  error={errors.password2}
-                  id="password2"
+                  value={this.state.confirmPassword}
+                  error={errors.confirmPassword}
+                  id="confirmPassword"
                   type="password"
                   className={classnames("", {
-                    invalid: errors.password2
+                    invalid: errors.confirmPassword
                   })}
                 />
-                <label htmlFor="password2">Confirm Password</label>
-                <span className="red-text">{errors.password2}</span>
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <span className="red-text">{errors.confirmPassword}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
