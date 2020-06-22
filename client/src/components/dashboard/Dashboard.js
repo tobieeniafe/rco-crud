@@ -35,20 +35,27 @@ class Dashboard extends Component {
     
     return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
-        <button
-              style={{
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem"
-              }}
-              onClick={this.onLogoutClick}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-            >
-              Logout
-        </button>
         <div className="row">
-            { this.state.products.map(product => <div className="col s4 center-align">{product.name}</div>)}
+          <button
+                style={{
+                  width: "150px",
+                  borderRadius: "3px",
+                  letterSpacing: "1.5px",
+                  marginTop: "1rem"
+                }}
+                onClick={this.onLogoutClick}
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              >
+                Logout
+          </button>
+        </div>
+        <div className="row">
+            { this.state.products.map((product, i) => 
+              <div className="col s4 center-align"  key={i}>
+                {product.name}
+                <img src={product.image}/>
+                {product.price}
+              </div>)}
         </div>
       </div>
     );
